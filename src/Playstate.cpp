@@ -11,13 +11,10 @@ void Playstate::Init()
 	m_Players[0] = new Racket(40, 400);
 	m_Players[1] = new Racket(700, 40);
 
-	float InitYPos = (GetScreenHeight() / 2) - (m_Players[0]->GetSize().y / 2);
+	const float InitYPos = (GetScreenHeight() / 2) - (m_Players[0]->GetSize().y / 2);
 
 	m_Players[0]->SetPosition(40, InitYPos);
 	m_Players[1]->SetPosition(700, InitYPos);
-
-	m_PlayersScore[0] = 0;
-	m_PlayersScore[1] = 0;
 
 	m_Ball.RestartBall();
 }
@@ -38,9 +35,6 @@ void Playstate::Resume()
 
 void Playstate::Update(Game* game)
 {
-	m_Players[0]->UpdateHitbox();
-	m_Players[1]->UpdateHitbox();
-
 	{
 		Command* command = input.HandlePlayer1Input();
 		if (command != nullptr)
@@ -67,6 +61,8 @@ void Playstate::Update(Game* game)
 
 	for (auto& player : m_Players)
 	{
+		player->UpdateHitbox();
+
 		if (m_Ball.Intersects(player->GetHitbox()))
 		{
 			Vector2 newVel{};

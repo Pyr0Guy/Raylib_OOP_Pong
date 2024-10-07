@@ -3,6 +3,7 @@
 #include "include/Playstate.hpp"
 
 #include <raylib.h>
+#include <raymath.h>
 
 Game::Game(unsigned int width, unsigned int height, const char* name)
 {

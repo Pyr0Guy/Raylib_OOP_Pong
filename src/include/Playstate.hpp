@@ -32,7 +32,6 @@ private:
 	static Playstate m_PlayStateScreen;
 
 	std::array<Racket*, 2> m_Players;
-	std::array<unsigned int, 2> m_PlayersScore;
 
 	Ball m_Ball;
 	HandleInput input;
